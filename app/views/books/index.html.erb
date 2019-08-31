@@ -1,0 +1,35 @@
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-3">
+       <%= render 'users/list',user: @user, book:@new_book %>
+    </div>
+
+    <div class="col-lg-9">
+
+<table class="table table-hover">
+  <h2>Books</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Opinion</th>
+      <th></th>
+     </tr> 
+   </thead>
+   <tbody>
+    <tr>
+      <% @books.each do |book| %>
+      <td><%= attachment_image_tag @user, :profile_image, :fill, 60, 60, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg" %></td>
+      <td><%= link_to book.title, book_path(book) %></td>
+      <td><%=book.body %></td>
+    </tr>
+     
+       <% end %>
+       </div>
+    </div>
+  </div>
+</div>
+
+

@@ -1,0 +1,76 @@
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="v
+t" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-3">
+<h1>User info</h1>
+    <h3 class="profile-name"><%= @user.name %></h3>
+    <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg" %>
+    <h3 class="prof-i"><%= @user.introduction %></h3>
+  <% if @user.id == current_user.id %>
+        <p><%= link_to "プロフィール編集", edit_user_path(@user), class: "pull-right" %></p>
+
+
+<%end%>
+
+<h1>New Book</h1>
+<%= form_for(@book) do |f| %>
+
+  <h4>Title</h4>
+  <%= f.text_field :title %>
+
+  <h4>Opinion</h4>
+  <%= f.text_area :body %>
+
+  <%= f.submit 'create book' %>
+<% end %>
+</div>
+<!-- <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> -->
+
+
+  <div class="col-lg-9">
+
+  <h2>Books</h2>
+ 
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Opinion</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+      <% @books.each do |book| %>
+        
+          <td><%= link_to book.title, book_path(book) %></td>
+          <td><%=book.body %></td>
+          <td>
+            <%= link_to "Show",book_path(book) %>
+             -->
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+</div>
+</body>
+</html>
+  
+
+
+
